@@ -13,7 +13,7 @@ namespace Desafio.Domain.Repositorios
          * de operações para entidades específicas.
          */
 
-        void Salvar(IEntidade entidade);
+        void Incluir(IEntidade entidade);
         TEntidade Carregar<TEntidade>(Guid id) where TEntidade : IEntidade;
     }
 }

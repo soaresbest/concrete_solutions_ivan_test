@@ -1,6 +1,4 @@
-﻿using Desafio.Domain.Entidades;
-
-namespace Desafio.Domain.Repositorios
+﻿namespace Desafio.Domain.Repositorios
 {
     public interface IUsuarioRepositorio: IRepositorio
     {
@@ -9,6 +7,6 @@ namespace Desafio.Domain.Repositorios
          * Ivan Soares dos Santos
          */
 
-        Usuario CarregarPorEMail(string eMail);
+        bool ExisteUsuarioComEMail(string eMail);
     }
 }
