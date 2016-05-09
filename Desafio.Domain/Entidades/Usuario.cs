@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Desafio.Domain.Entidades
 {
-    public class Usuario
+    public class Usuario : IEntidade
     {
         /*
          * Desafio .NET Concrete Solutions
@@ -13,5 +14,8 @@ namespace Desafio.Domain.Entidades
         public string EMail { get; set; }
         public string Senha { get; set; }
         public IList<Telefone> Telefones { get; set; }
+        public Guid Id { get; set; }
+        public DateTime DataCriacao { get; set; }
+        public DateTime DataAtualizacao { get; set; }
     }
 }
