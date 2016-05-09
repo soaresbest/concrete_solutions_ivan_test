@@ -42,6 +42,8 @@
     <Compile Include="Entidades\IEntidade.cs" />
     <Compile Include="Entidades\Telefone.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Excecoes\DominioException.cs" />
+    <Compile Include="Excecoes\EMailExistenteException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\IRepositorio.cs" />
     <Compile Include="Repositorios\IUsuarioRepositorio.cs" />
