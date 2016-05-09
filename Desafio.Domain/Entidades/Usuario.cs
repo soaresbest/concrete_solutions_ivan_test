@@ -13,6 +13,8 @@ namespace Desafio.Domain.Entidades
         public string Nome { get; set; }
         public string EMail { get; set; }
         public string Senha { get; set; }
+        public DateTime UltimoLogin { get; set; }
+        public string Token { get; set; }
         public IList<Telefone> Telefones { get; set; }
         public Guid Id { get; set; }
         public DateTime DataCriacao { get; set; }
