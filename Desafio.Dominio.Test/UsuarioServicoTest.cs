@@ -47,7 +47,7 @@ namespace Desafio.Dominio.Test
         }
 
         [Test]
-        public void Permite_Incluir_Usuario()
+        public void Deve_Incluir_Usuario()
         {
             _usuarioRepositorio
                 .Setup(usuarioRepositorio => usuarioRepositorio.ExisteUsuarioComEMail(It.IsAny<string>()))
