@@ -16,6 +16,8 @@ namespace Desafio.Infra.Repositorios.NHibernate
         /*
          * Desafio .NET Concrete Solutions
          * Ivan Soares dos Santos
+         * 
+         * Utilizando o SQLite.
          */
 
         public static ISessionFactory GetSessionFactory()
@@ -30,14 +32,8 @@ namespace Desafio.Infra.Repositorios.NHibernate
                 c.Dialect<SQLiteDialect>();
             });
 
-            List<Type> types = typeof(EntidadeMapping<>)
-                .Assembly
-                .GetTypes()
-                .ToList();
-
-            //types.Remove(typeof(SessionFactoryHelper));
-
-            modelMapper.AddMappings(types);
+            modelMapper.AddMapping<UsuarioMapping>();
+            modelMapper.AddMapping<TelefoneMapping>();
 
             HbmMapping mappings = modelMapper.CompileMappingForAllExplicitlyAddedEntities();
 

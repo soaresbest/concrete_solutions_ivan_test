@@ -32,3 +32,9 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+/*
+ * Desafio .NET Concrete Solutions
+ * Ivan Soares dos Santos
+ */
+[assembly: Microsoft.Owin.OwinStartup(typeof(Desafio.Infra.API.Security.Startup))]

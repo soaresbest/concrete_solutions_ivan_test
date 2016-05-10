@@ -21,7 +21,7 @@ namespace Desafio.Infra.Repositorios.NHibernate.Mappings
             Bag(x => x.Telefones, map =>
             {
                 map.Cascade(Cascade.All.Include(Cascade.DeleteOrphans));
-                map.Access(Accessor.NoSetter);
+                map.Access(Accessor.Property);
                 map.Key(key => key.Column("UsuarioId"));
             }, map => map.OneToMany());
         }

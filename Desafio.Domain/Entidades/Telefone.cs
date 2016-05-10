@@ -9,11 +9,11 @@ namespace Desafio.Domain.Entidades
          * Ivan Soares dos Santos
          */
 
-        public Usuario Usuario { get; set; }
-        public string Numero { get; set; }
-        public string DDD { get; set; }
-        public Guid Id { get; set; }
-        public DateTime DataCriacao { get; set; }
-        public DateTime DataAtualizacao { get; set; }
+        public virtual Usuario Usuario { get; set; }
+        public virtual string Numero { get; set; }
+        public virtual string DDD { get; set; }
+        public virtual Guid Id { get; set; }
+        public virtual DateTime DataCriacao { get; set; }
+        public virtual DateTime DataAtualizacao { get; set; }
     }
 }
