@@ -9,6 +9,7 @@ namespace Desafio.Domain.Entidades
          * Ivan Soares dos Santos
          */
 
+        public Usuario Usuario { get; set; }
         public string Numero { get; set; }
         public string DDD { get; set; }
         public Guid Id { get; set; }
