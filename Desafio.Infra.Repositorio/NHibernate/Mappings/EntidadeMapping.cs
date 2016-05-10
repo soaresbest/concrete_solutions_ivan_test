@@ -6,6 +6,11 @@ namespace Desafio.Infra.Repositorio.NHibernate.Mappings
 {
     public class EntidadeMapping<T> : ClassMapping<T> where T : class, IEntidade
     {
+        /*
+         * Desafio .NET Concrete Solutions
+         * Ivan Soares dos Santos
+         */
+
         public EntidadeMapping()
         {
             Id(x => x.Id, g => g.Generator(Generators.GuidComb));

@@ -50,6 +50,8 @@
     <Compile Include="NHibernate\Mappings\UsuarioMapping.cs" />
     <Compile Include="NHibernate\SessionFactoryHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorio.cs" />
+    <Compile Include="UsuarioRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

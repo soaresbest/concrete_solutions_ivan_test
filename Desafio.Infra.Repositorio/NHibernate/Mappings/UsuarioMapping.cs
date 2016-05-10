@@ -5,6 +5,11 @@ namespace Desafio.Infra.Repositorio.NHibernate.Mappings
 {
     public class UsuarioMapping : EntidadeMapping<Usuario>
     {
+        /*
+         * Desafio .NET Concrete Solutions
+         * Ivan Soares dos Santos
+         */
+
         public UsuarioMapping()
         {
             Property(x => x.Nome);
