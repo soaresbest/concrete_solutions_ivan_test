@@ -2,7 +2,7 @@
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 
-namespace Desafio.Infra.Repositorio.NHibernate.Mappings
+namespace Desafio.Infra.Repositorios.NHibernate.Mappings
 {
     public class EntidadeMapping<T> : ClassMapping<T> where T : class, IEntidade
     {

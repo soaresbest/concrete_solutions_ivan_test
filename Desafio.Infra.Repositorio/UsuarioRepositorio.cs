@@ -3,7 +3,7 @@ using Desafio.Domain.Repositorios;
 using NHibernate;
 using NHibernate.Criterion;
 
-namespace Desafio.Infra.Repositorio
+namespace Desafio.Infra.Repositorios
 {
     public class UsuarioRepositorio : Repositorio, IUsuarioRepositorio
     {

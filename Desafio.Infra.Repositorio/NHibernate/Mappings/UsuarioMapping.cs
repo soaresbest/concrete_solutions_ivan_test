@@ -1,7 +1,7 @@
 ﻿using Desafio.Domain.Entidades;
 using NHibernate.Mapping.ByCode;
 
-namespace Desafio.Infra.Repositorio.NHibernate.Mappings
+namespace Desafio.Infra.Repositorios.NHibernate.Mappings
 {
     public class UsuarioMapping : EntidadeMapping<Usuario>
     {

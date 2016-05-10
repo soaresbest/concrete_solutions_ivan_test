@@ -7,8 +7,8 @@
     <ProjectGuid>{377B8801-BF4A-4C02-9EEB-A8C27CEE869D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Desafio.Infra.Repositorio</RootNamespace>
-    <AssemblyName>Desafio.Infra.Repositorio</AssemblyName>
+    <RootNamespace>Desafio.Infra.Repositorios</RootNamespace>
+    <AssemblyName>Desafio.Infra.Repositorios</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -62,6 +62,7 @@
       <Name>Desafio.Dominio</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

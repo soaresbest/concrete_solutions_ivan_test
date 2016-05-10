@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Desafio.Infra.Repositorio.NHibernate.Mappings;
+using Desafio.Infra.Repositorios.NHibernate.Mappings;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
@@ -9,7 +9,7 @@ using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 
-namespace Desafio.Infra.Repositorio.NHibernate
+namespace Desafio.Infra.Repositorios.NHibernate
 {
     public static class SessionFactoryHelper
     {

@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Dominio", "Desafio.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Dominio.Test", "Desafio.Dominio.Test\Desafio.Dominio.Test.csproj", "{058C4369-CA9F-47AB-B00C-EC50E368458B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Infra.Repositorio", "Desafio.Infra.Repositorio\Desafio.Infra.Repositorio.csproj", "{377B8801-BF4A-4C02-9EEB-A8C27CEE869D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Infra.Repositorios", "Desafio.Infra.Repositorio\Desafio.Infra.Repositorios.csproj", "{377B8801-BF4A-4C02-9EEB-A8C27CEE869D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Infra.API", "Desafio.Infra.API\Desafio.Infra.API.csproj", "{EDFC3ACB-87C1-4EA2-8081-5893CB0F3E05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{377B8801-BF4A-4C02-9EEB-A8C27CEE869D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{377B8801-BF4A-4C02-9EEB-A8C27CEE869D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{377B8801-BF4A-4C02-9EEB-A8C27CEE869D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDFC3ACB-87C1-4EA2-8081-5893CB0F3E05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDFC3ACB-87C1-4EA2-8081-5893CB0F3E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDFC3ACB-87C1-4EA2-8081-5893CB0F3E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDFC3ACB-87C1-4EA2-8081-5893CB0F3E05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

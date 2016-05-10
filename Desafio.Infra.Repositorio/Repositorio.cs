@@ -3,7 +3,7 @@ using Desafio.Domain.Entidades;
 using Desafio.Domain.Repositorios;
 using NHibernate;
 
-namespace Desafio.Infra.Repositorio
+namespace Desafio.Infra.Repositorios
 {
     public class Repositorio : IRepositorio
     {

@@ -1,6 +1,6 @@
 ﻿using Desafio.Domain.Entidades;
 
-namespace Desafio.Infra.Repositorio.NHibernate.Mappings
+namespace Desafio.Infra.Repositorios.NHibernate.Mappings
 {
     public class TelefoneMapping : EntidadeMapping<Telefone>
     {
