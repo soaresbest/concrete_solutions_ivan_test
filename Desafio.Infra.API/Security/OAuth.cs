@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Web.Http;
-using Desafio.Infra.API.App_Start;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataHandler.Encoder;
@@ -10,28 +8,15 @@ using Owin;
 
 namespace Desafio.Infra.API.Security
 {
-    public class Startup
+    public static class OAuth
     {
-        public void Configuration(IAppBuilder app)
+        public static void Configure(IAppBuilder app)
         {
-            HttpConfiguration config = new HttpConfiguration();
-
-            config.MapHttpAttributeRoutes();
-
-            ConfigureOAuth(app);
-
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-
-            app.UseWebApi(config);
-
-        }
-
-        public void ConfigureOAuth(IAppBuilder app)
-        {
-
-            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
+            var authAuthorizationServerOptions = new OAuthAuthorizationServerOptions()
             {
-                //For Dev enviroment only (on production should be AllowInsecureHttp = false)
+                /*
+                 * AllowInsecureHttp deve ser false para produção
+                 */
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/oauth2/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
@@ -40,7 +25,7 @@ namespace Desafio.Infra.API.Security
             };
 
             // OAuth 2.0 Bearer Access Token Generation
-            app.UseOAuthAuthorizationServer(OAuthServerOptions);
+            app.UseOAuthAuthorizationServer(authAuthorizationServerOptions);
 
 
             var issuer = "http://jwtauthzsrv.azurewebsites.net";

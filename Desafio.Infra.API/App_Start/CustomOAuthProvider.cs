@@ -9,7 +9,6 @@ namespace Desafio.Infra.API
 {
     public class CustomOAuthProvider : OAuthAuthorizationServerProvider
     {
-
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             string clientId;

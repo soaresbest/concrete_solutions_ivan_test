@@ -5,10 +5,15 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 using Thinktecture.IdentityModel.Tokens;
 
-namespace Desafio.Infra.API.App_Start
+namespace Desafio.Infra.API
 {
     public class CustomJwtFormat : ISecureDataFormat<AuthenticationTicket>
     {
+        /*
+         * Desafio .NET Concrete Solutions
+         * Ivan Soares dos Santos
+         */
+
         private const string AudiencePropertyKey = "audience";
 
         private readonly string _issuer = string.Empty;

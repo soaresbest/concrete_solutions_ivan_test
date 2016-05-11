@@ -24,9 +24,9 @@ namespace Desafio.Infra.Repositorios
             using (ITransaction transaction = Session.BeginTransaction())
             {
                 count = Session
-                    .CreateCriteria<Usuario>()
-                    .SetProjection(Projections.RowCountInt64())
-                    .UniqueResult<long>();
+                    .QueryOver<Usuario>()
+                    .Where(usuario => usuario.EMail == eMail)
+                    .RowCountInt64();
 
                 transaction.Commit();
             }

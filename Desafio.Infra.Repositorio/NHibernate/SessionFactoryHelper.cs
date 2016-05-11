@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Desafio.Infra.Repositorios.NHibernate.Mappings;
+﻿using Desafio.Infra.Repositorios.NHibernate.Mappings;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
 using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
+using Configuration = NHibernate.Cfg.Configuration;
 
 namespace Desafio.Infra.Repositorios.NHibernate
 {
@@ -17,19 +15,30 @@ namespace Desafio.Infra.Repositorios.NHibernate
          * Desafio .NET Concrete Solutions
          * Ivan Soares dos Santos
          * 
-         * Utilizando o SQLite.
+         * Utilizando o NHibernate com SQLite.
          */
+
+        private const string CONNECTION_STRING_NAME = "DesafioIvan";
+
+        public static Configuration Configuration { get; private set; }
 
         public static ISessionFactory GetSessionFactory()
         {
-            var configuration = new Configuration();
+            Configuration = new Configuration();
             var modelMapper = new ModelMapper();
 
-            configuration.DataBaseIntegration(c =>
+            Configuration.DataBaseIntegration(c =>
             {
-                c.ConnectionStringName = "DesafioIvan";
+                c.ConnectionStringName = CONNECTION_STRING_NAME;
                 c.Driver<SQLite20Driver>();
                 c.Dialect<SQLiteDialect>();
+
+                /*
+                 * Com o banco de dados na memória no SQLite a estrutura se perde
+                 * ao fechar a conexão e isso acontece a cada transação, a não ser
+                 * que a configuração abaixo seja mantida.
+                 */
+                c.ConnectionReleaseMode = ConnectionReleaseMode.OnClose;
             });
 
             modelMapper.AddMapping<UsuarioMapping>();
@@ -37,9 +46,9 @@ namespace Desafio.Infra.Repositorios.NHibernate
 
             HbmMapping mappings = modelMapper.CompileMappingForAllExplicitlyAddedEntities();
 
-            configuration.AddMapping(mappings);
+            Configuration.AddMapping(mappings);
 
-            ISessionFactory sessionFactory = configuration.BuildSessionFactory();
+            ISessionFactory sessionFactory = Configuration.BuildSessionFactory();
 
             return sessionFactory;
         }

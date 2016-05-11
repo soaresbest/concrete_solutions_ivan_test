@@ -4,6 +4,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
+using Desafio.Infra.API;
+
 [assembly: AssemblyTitle("Desafio.Infra.API")]
 [assembly: AssemblyDescription("API do Teste de Ivan Soares para Concrete Solutions")]
 [assembly: AssemblyConfiguration("")]
@@ -37,4 +39,4 @@ using System.Runtime.InteropServices;
  * Desafio .NET Concrete Solutions
  * Ivan Soares dos Santos
  */
-[assembly: Microsoft.Owin.OwinStartup(typeof(Desafio.Infra.API.Security.Startup))]
+[assembly: Microsoft.Owin.OwinStartup(typeof(Startup))]

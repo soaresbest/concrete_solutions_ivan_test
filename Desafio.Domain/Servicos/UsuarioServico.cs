@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Desafio.Domain.Entidades;
 using Desafio.Domain.Excecoes;
 using Desafio.Domain.Repositorios;
@@ -26,6 +27,21 @@ namespace Desafio.Domain.Servicos
 
             if (_usuarioRepositorio.ExisteUsuarioComEMail(usuario.EMail))
                 throw new EMailExistenteException(usuario.EMail);
+
+            DateTime now = DateTime.Now;
+
+            usuario.DataCriacao = now;
+            usuario.DataAtualizacao = now;
+            usuario.UltimoLogin = now;
+
+            if (usuario.Telefones != null && usuario.Telefones.Any())
+            {
+                foreach (Telefone telefone in usuario.Telefones)
+                {
+                    telefone.DataCriacao = now;
+                    telefone.DataAtualizacao = now;
+                }
+            }
 
             _usuarioRepositorio.Incluir(usuario);
         }
