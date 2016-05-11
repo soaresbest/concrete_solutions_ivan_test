@@ -1,4 +1,6 @@
-﻿namespace Desafio.Domain.Repositorios
+﻿using Desafio.Domain.Entidades;
+
+namespace Desafio.Domain.Repositorios
 {
     public interface IUsuarioRepositorio: IRepositorio
     {
@@ -8,5 +10,6 @@
          */
 
         bool ExisteUsuarioComEMail(string eMail);
+        Usuario CarregarPorEMail(string eMail);
     }
 }

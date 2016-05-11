@@ -1,7 +1,6 @@
 ﻿using Desafio.Domain.Entidades;
 using Desafio.Domain.Repositorios;
 using NHibernate;
-using NHibernate.Criterion;
 
 namespace Desafio.Infra.Repositorios
 {
@@ -32,6 +31,23 @@ namespace Desafio.Infra.Repositorios
             }
 
             return count > 0;
+        }
+
+        public Usuario CarregarPorEMail(string eMail)
+        {
+            Usuario usuario;
+
+            using (ITransaction transaction = Session.BeginTransaction())
+            {
+                usuario = Session
+                    .QueryOver<Usuario>()
+                    .Where(user => user.EMail == eMail)
+                    .SingleOrDefault<Usuario>();
+
+                transaction.Commit();
+            }
+
+            return usuario;
         }
     }
 }

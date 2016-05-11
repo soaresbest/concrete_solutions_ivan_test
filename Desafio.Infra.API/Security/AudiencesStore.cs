@@ -7,6 +7,11 @@ namespace Desafio.Infra.API.Security
 {
     public static class AudiencesStore
     {
+        /*
+         * Desafio .NET Concrete Solutions
+         * Ivan Soares dos Santos
+         */
+
         public static ConcurrentDictionary<string, Audience> AudiencesList = new ConcurrentDictionary<string, Audience>();
 
         static AudiencesStore()
@@ -30,16 +35,19 @@ namespace Desafio.Infra.API.Security
 
             var newAudience = new Audience { ClientId = clientId, Base64Secret = base64Secret, Name = name };
             AudiencesList.TryAdd(clientId, newAudience);
+
             return newAudience;
         }
 
         public static Audience FindAudience(string clientId)
         {
-            Audience audience = null;
+            Audience audience;
+
             if (AudiencesList.TryGetValue(clientId, out audience))
             {
                 return audience;
             }
+
             return null;
         }
     }

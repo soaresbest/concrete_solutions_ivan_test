@@ -60,7 +60,7 @@ namespace Desafio.Infra.API
             var props = new AuthenticationProperties(new Dictionary<string, string>
                 {
                     {
-                         "audience", (context.ClientId == null) ? string.Empty : context.ClientId
+                         "audience", context.ClientId ?? string.Empty
                     }
                 });
 

@@ -1,6 +1,10 @@
-﻿using System.Web.Http;
-using System.Web.Http.ExceptionHandling;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
+using System.Web.Http;
 using Desafio.Infra.API.Security;
+using Newtonsoft.Json.Serialization;
 using Owin;
 
 namespace Desafio.Infra.API
@@ -34,8 +38,27 @@ namespace Desafio.Infra.API
             configuration.MapHttpAttributeRoutes();
 
             configuration.Filters.Add(new HandleException());
-            
-            FilterConfig.RegisterWebApiFilters(GlobalConfiguration.Configuration.Filters);
+
+            ConfigureApiReturnOnlyJson(configuration);
+
+            ConfigureApiReturnLowerCase(configuration);
+        }
+
+        private static void ConfigureApiReturnLowerCase(HttpConfiguration configuration)
+        {
+            configuration.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
+                new CamelCasePropertyNamesContractResolver();
+        }
+
+        private static void ConfigureApiReturnOnlyJson(HttpConfiguration configuration)
+        {
+            Collection<MediaTypeHeaderValue> mediaTypeHeaderValues = configuration.Formatters.XmlFormatter.SupportedMediaTypes;
+            MediaTypeHeaderValue appXmlType = mediaTypeHeaderValues.FirstOrDefault(t => t.MediaType == "application/xml");
+
+            if (null != appXmlType)
+            {
+                mediaTypeHeaderValues.Remove(appXmlType);
+            }
         }
     }
 }

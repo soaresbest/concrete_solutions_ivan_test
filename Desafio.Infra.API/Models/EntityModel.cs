@@ -1,5 +1,6 @@
 using System;
 using Desafio.Domain.Entidades;
+using Newtonsoft.Json;
 
 namespace Desafio.Infra.API.Models
 {
@@ -17,7 +18,11 @@ namespace Desafio.Infra.API.Models
         }
 
         public Guid Id { get; set; }
+
+        [JsonProperty("data_criacao")]
         public DateTime DataCriacao { get; set; }
+
+        [JsonProperty("data_atualizacao")]
         public DateTime DataAtualizacao { get; set; }
     }
 }

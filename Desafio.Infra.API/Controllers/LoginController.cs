@@ -2,31 +2,30 @@
 using Desafio.Domain.Entidades;
 using Desafio.Domain.Servicos;
 using Desafio.Infra.API.Models;
-using Desafio.Infra.API.Security;
 
 namespace Desafio.Infra.API.Controllers
 {
-    [RoutePrefix("api/signup")]
-    public class SignUpController : ApiController
+    [RoutePrefix("api/login")]
+    public class LoginController : ApiController
     {
         private readonly UsuarioServico _usuarioServico;
 
-        public SignUpController(UsuarioServico usuarioServico)
+        public LoginController(UsuarioServico usuarioServico)
         {
             _usuarioServico = usuarioServico;
         }
 
         [Route("")]
-        public IHttpActionResult Post(UserModel userModel)
+        public IHttpActionResult Post(LoginModel loginModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            Usuario usuario = userModel.ToEntity();
+            Usuario usuario = loginModel.ToEntity();
 
-            _usuarioServico.Incluir(usuario);
+            usuario = _usuarioServico.Login(usuario);
 
             return Ok<UserModel>(new UserModel(usuario));
         }

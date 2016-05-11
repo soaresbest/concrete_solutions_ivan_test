@@ -45,5 +45,25 @@ namespace Desafio.Domain.Servicos
 
             _usuarioRepositorio.Incluir(usuario);
         }
+
+        public Usuario Login(Usuario usuario)
+        {
+            if (usuario == null)
+                throw new ArgumentNullException("usuario");
+
+            Usuario usuarioPorEMail = _usuarioRepositorio.CarregarPorEMail(usuario.EMail);
+
+            if (usuarioPorEMail == null)
+                throw new EMailInexistenteException();
+
+            if (usuarioPorEMail.Senha != usuario.Senha)
+                throw new SenhaInvalidaException();
+
+            usuarioPorEMail.UltimoLogin = DateTime.Now;
+
+            _usuarioRepositorio.Alterar(usuarioPorEMail);
+
+            return usuarioPorEMail;
+        }
     }
 }

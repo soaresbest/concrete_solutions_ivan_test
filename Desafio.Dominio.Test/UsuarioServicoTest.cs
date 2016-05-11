@@ -15,6 +15,8 @@ namespace Desafio.Dominio.Test
          * Ivan Soares dos Santos
          */
 
+        private const string E_MAIL = "gmail@chucknorris.com"; // :)
+
         private Mock<IUsuarioRepositorio> _usuarioRepositorio;
         private UsuarioServico _usuarioServico;
 
@@ -37,7 +39,7 @@ namespace Desafio.Dominio.Test
         {
             var usuario = new Usuario();
 
-            usuario.EMail = "gmail@chucknorris.com"; // :)
+            usuario.EMail = E_MAIL;
 
             _usuarioRepositorio
                 .Setup(usuarioRepositorio => usuarioRepositorio.ExisteUsuarioComEMail(usuario.EMail))
@@ -58,6 +60,98 @@ namespace Desafio.Dominio.Test
             _usuarioServico.Incluir(usuario);
 
             _usuarioRepositorio.Verify(usuarioRepositorio => usuarioRepositorio.Incluir(usuario), Times.Once);
+        }
+
+        [Test]
+        public void Nao_Permite_Login_De_Usuario_Nulo()
+        {
+            Assert.Throws<ArgumentNullException>(() => _usuarioServico.Login(null));
+        }
+
+        [Test]
+        public void Lancar_EMailInexistenteException_Para_Usuario_Nao_Encontrado_Pelo_Email()
+        {
+            _usuarioRepositorio
+                .Setup(usuarioRepositorio => usuarioRepositorio.CarregarPorEMail(E_MAIL))
+                .Returns((Usuario) null);
+
+            var usuario = new Usuario();
+
+            Assert.Throws<EMailInexistenteException>(() => _usuarioServico.Login(usuario));
+        }
+
+        [Test]
+        public void Lancar_SenhaInvalidaException_Para_Usuario_Encontrado_Pelo_Email_Mas_Senha_Incompativel()
+        {
+            var usuario = new Usuario
+            {
+                EMail = E_MAIL,
+                Senha = "pass@123"
+            };
+
+            var usuarioPorEMail = new Usuario
+            {
+                EMail = E_MAIL,
+                Senha = "pass!123"
+            };
+
+            _usuarioRepositorio
+                .Setup(usuarioRepositorio => usuarioRepositorio.CarregarPorEMail(E_MAIL))
+                .Returns(usuarioPorEMail);
+
+            Assert.Throws<SenhaInvalidaException>(() => _usuarioServico.Login(usuario));
+        }
+
+        [Test]
+        public void Alterar_Atributo_UltimoLogin_Se_Usuario_For_Encontrado_E_Senha_Coincidir()
+        {
+            var now = DateTime.Now;
+
+            var usuario = new Usuario
+            {
+                EMail = E_MAIL,
+                Senha = "pass@123",
+                UltimoLogin = now
+            };
+
+            var usuarioPorEMail = new Usuario
+            {
+                EMail = E_MAIL,
+                Senha = "pass@123",
+                UltimoLogin = now
+            };
+
+            _usuarioRepositorio
+                .Setup(usuarioRepositorio => usuarioRepositorio.CarregarPorEMail(E_MAIL))
+                .Returns(usuarioPorEMail);
+
+            _usuarioServico.Login(usuario);
+
+            Assert.Greater(usuarioPorEMail.UltimoLogin, usuario.UltimoLogin);
+        }
+
+        [Test]
+        public void Deve_Chamar_Repositorio_Para_Alterar_Ultimologin_Do_Usuario()
+        {
+            var usuario = new Usuario
+            {
+                EMail = E_MAIL,
+                Senha = "pass@123"
+            };
+
+            var usuarioPorEMail = new Usuario
+            {
+                EMail = E_MAIL,
+                Senha = "pass@123"
+            };
+
+            _usuarioRepositorio
+                .Setup(usuarioRepositorio => usuarioRepositorio.CarregarPorEMail(E_MAIL))
+                .Returns(usuarioPorEMail);
+
+            _usuarioServico.Login(usuario);
+
+            _usuarioRepositorio.Verify(usuarioRepositorio => usuarioRepositorio.Alterar(usuarioPorEMail), Times.Once);
         }
     }
 }

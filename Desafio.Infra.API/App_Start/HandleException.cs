@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http.Filters;
 
@@ -10,9 +11,16 @@ namespace Desafio.Infra.API
         {
             HttpRequestMessage request = context.ActionContext.Request;
 
+            HttpStatusCode httpStatusCode = HttpStatusCode.InternalServerError;
+
+            if (context.Exception is UnauthorizedAccessException)
+            {
+                httpStatusCode = HttpStatusCode.Unauthorized;
+            }
+
             var response = new
             {
-                statusCode = HttpStatusCode.InternalServerError,
+                statusCode = httpStatusCode,
                 mensagem = context.Exception.Message
             };
 

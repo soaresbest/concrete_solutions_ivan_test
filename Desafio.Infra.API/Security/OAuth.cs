@@ -10,39 +10,42 @@ namespace Desafio.Infra.API.Security
 {
     public static class OAuth
     {
+        /*
+         * Desafio .NET Concrete Solutions
+         * Ivan Soares dos Santos
+         */
+
         public static void Configure(IAppBuilder app)
         {
-            var authAuthorizationServerOptions = new OAuthAuthorizationServerOptions()
+            var authAuthorizationServerOptions = new OAuthAuthorizationServerOptions
             {
                 /*
                  * AllowInsecureHttp deve ser false para produção
                  */
                 AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/oauth2/token"),
+                TokenEndpointPath = new PathString("/api/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new CustomOAuthProvider(),
-                AccessTokenFormat = new CustomJwtFormat("http://jwtauthzsrv.azurewebsites.net")
+                AccessTokenFormat = new CustomJwtFormat("http://jwtauthzsrv.azurewebsites.net"),
             };
 
-            // OAuth 2.0 Bearer Access Token Generation
             app.UseOAuthAuthorizationServer(authAuthorizationServerOptions);
 
+            const string ISSUER = "http://jwtauthzsrv.azurewebsites.net";
+            const string AUDIENCE = "099153c2625149bc8ecb3e85e03f0022";
+            byte[] secret = TextEncodings.Base64Url.Decode("IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw");
 
-            var issuer = "http://jwtauthzsrv.azurewebsites.net";
-            var audience = "099153c2625149bc8ecb3e85e03f0022";
-            var secret = TextEncodings.Base64Url.Decode("IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw");
-
-            // Api controllers with an [Authorize] attribute will be validated with JWT
-            app.UseJwtBearerAuthentication(
-                new JwtBearerAuthenticationOptions
+            var authenticationOptions = new JwtBearerAuthenticationOptions
+            {
+                AuthenticationMode = AuthenticationMode.Active,
+                AllowedAudiences = new[] { AUDIENCE },
+                IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]
                 {
-                    AuthenticationMode = AuthenticationMode.Active,
-                    AllowedAudiences = new[] { audience },
-                    IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]
-                    {
-                        new SymmetricKeyIssuerSecurityTokenProvider(issuer, secret)
-                    }
-                });
+                    new SymmetricKeyIssuerSecurityTokenProvider(ISSUER, secret)
+                }
+            };
+
+            app.UseJwtBearerAuthentication(authenticationOptions);
         }
     }
 }

@@ -146,12 +146,13 @@
     <Compile Include="App_Start\CustomJwtFormat.cs" />
     <Compile Include="App_Start\CustomOAuthProvider.cs" />
     <Compile Include="App_Start\HandleException.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\InjectorConfig.cs" />
     <Compile Include="Controllers\AudienceController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Models\EntityModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PhoneModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Security\Audience.cs" />
@@ -166,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\aws.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -14,6 +14,7 @@ namespace Desafio.Domain.Repositorios
          */
 
         void Incluir(IEntidade entidade);
+        void Alterar(IEntidade entidade);
         TEntidade Carregar<TEntidade>(Guid id) where TEntidade : IEntidade;
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Web.Http;
 using Desafio.Domain.Entidades;
-using Desafio.Domain.Excecoes;
 using Desafio.Domain.Repositorios;
 using Desafio.Infra.API.Models;
 
 namespace Desafio.Infra.API.Controllers
 {
     [RoutePrefix("api/profile")]
+    [Authorize]
     public class ProfileController : ApiController
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;

@@ -29,6 +29,16 @@ namespace Desafio.Infra.Repositorios
             }
         }
 
+        public void Alterar(IEntidade entidade)
+        {
+            using (ITransaction transaction = Session.BeginTransaction())
+            {
+                Session.Update(entidade);
+
+                transaction.Commit();
+            }
+        }
+
         public TEntidade Carregar<TEntidade>(Guid id) where TEntidade : IEntidade
         {
             TEntidade entidade;

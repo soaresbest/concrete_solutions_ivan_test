@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Desafio.Domain.Entidades;
+using Newtonsoft.Json;
 
 namespace Desafio.Infra.API.Models
 {
@@ -17,6 +19,7 @@ namespace Desafio.Infra.API.Models
             Nome = usuario.Nome;
             EMail = usuario.EMail;
             Senha = usuario.Senha;
+            UltimoLogin = usuario.UltimoLogin;
 
             if (usuario.Telefones != null && usuario.Telefones.Any())
             {
@@ -35,11 +38,15 @@ namespace Desafio.Infra.API.Models
 
         [MaxLength(100)]
         [Required]
+        [JsonProperty("email")]
         public string EMail { get; set; }
 
         [MaxLength(100)]
         [Required]
         public string Senha { get; set; }
+
+        [JsonProperty("ultimo_login")]
+        public DateTime UltimoLogin { get; set; }
 
         public IList<PhoneModel> Telefones { get; set; }
 
